@@ -16,17 +16,17 @@
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_chekWebpak__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/chekWebpak */ \"./src/modules/chekWebpak.js\");\n\n\n\n(0,_modules_chekWebpak__WEBPACK_IMPORTED_MODULE_0__.default)();\n\n//# sourceURL=webpack://middle_diplom/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_Order_all__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/OrderСall */ \"./src/modules/OrderСall.js\");\n\n\n //Появление окна 'Заказать обратный звонок'\n\n(0,_modules_Order_all__WEBPACK_IMPORTED_MODULE_0__.default)();\n\n//# sourceURL=webpack://middle_diplom/./src/index.js?");
 
 /***/ }),
 
-/***/ "./src/modules/chekWebpak.js":
-/*!***********************************!*\
-  !*** ./src/modules/chekWebpak.js ***!
-  \***********************************/
+/***/ "./src/modules/OrderСall.js":
+/*!**********************************!*\
+  !*** ./src/modules/OrderСall.js ***!
+  \**********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nvar chekWebpak = function chekWebpak() {\n  console.log('Работает!');\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (chekWebpak);\n\n//# sourceURL=webpack://middle_diplom/./src/modules/chekWebpak.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nvar OrderСall = function OrderСall() {\n  var overlay = document.querySelector('.overlay'),\n      headerModal = document.querySelector('.header-modal'),\n      close = document.querySelector('.header-modal__close'),\n      buttonFancyboxModal = document.querySelector('.fancyboxModal');\n  buttonFancyboxModal.addEventListener('click', function (event) {\n    event.preventDefault();\n    overlay.style.display = 'block';\n  });\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (OrderСall);\n\n//# sourceURL=webpack://middle_diplom/./src/modules/Order%D0%A1all.js?");
 
 /***/ })
 

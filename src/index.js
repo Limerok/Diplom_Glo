@@ -1,6 +1,7 @@
 'use strict';
 
-import chekWebpak from './modules/chekWebpak';
+import OrderСall from './modules/OrderСall';
 
-chekWebpak();
+//Появление окна 'Заказать обратный звонок'
+OrderСall();
 
