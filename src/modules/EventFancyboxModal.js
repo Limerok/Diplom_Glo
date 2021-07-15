@@ -27,19 +27,19 @@ const EventFancyboxModal = () => {
     blockModal.addEventListener('click', event => {
         let target = event.target;
         console.log(target);
-        if (target.classList.contains('header-modal__close') || target.classList.contains('.services-modal__close')) {
+        if (target.classList.contains('header-modal__close')) {
             overlay.style.display = 'none';
             headerModal.style.display = 'none';
+        }else if (target.classList.contains('services-modal__close')) {
+            overlay.style.display = 'none';
+            serviceModal.style.display = 'none';
         } else {
             const targetCall = target.closest('.header-modal'),
                 targetService = target.closest('.services-modal');
 
-            if (!targetCall) {
+            if (!targetCall && !targetService) {
                 overlay.style.display = 'none';
                 headerModal.style.display = 'none';
-            }
-            if (!targetService) {
-                overlay.style.display = 'none';
                 serviceModal.style.display = 'none';
             }
         }
