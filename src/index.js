@@ -1,7 +1,7 @@
 'use strict';
 
-import OrderСall from './modules/OrderСall';
+import EventFancyboxModal from './modules/EventFancyboxModal';
 
-//Появление окна 'Заказать обратный звонок'
-OrderСall();
+//Обратный звонок и Вызов замерщика
+EventFancyboxModal();
 
