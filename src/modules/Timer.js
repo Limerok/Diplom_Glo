@@ -5,7 +5,6 @@ function Timer (deadline) {
         timerMinutes = document.querySelectorAll('.count_3 span'),
         timerSeconds = document.querySelectorAll('.count_4 span'); 
 
-    console.log(timerHours);
     function getTimeRemainning() {
         const dataStop = new Date(deadline).getTime(),
             dateNow = new Date().getTime(),

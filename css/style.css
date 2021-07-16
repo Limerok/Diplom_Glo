@@ -1600,6 +1600,12 @@ input.error {
   width: 100%;
   max-width: 185px;
 }
+.benefits__item--active{
+  display: block;
+}
+.benefits__item--noactive{
+  display: none;
+}
 
 .benefits-arrows {
   display: flex;

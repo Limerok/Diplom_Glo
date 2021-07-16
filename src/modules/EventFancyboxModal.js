@@ -26,7 +26,6 @@ const EventFancyboxModal = () => {
 
     blockModal.addEventListener('click', event => {
         let target = event.target;
-        console.log(target);
         if (target.classList.contains('header-modal__close')) {
             overlay.style.display = 'none';
             headerModal.style.display = 'none';

@@ -3,6 +3,7 @@
 import EventFancyboxModal from './modules/EventFancyboxModal';
 import ScrollTop from './modules/ScrollTop';
 import Timer from './modules/Timer';
+import Slider from './modules/Slider';
 
 //Обратный звонок и Вызов замерщика
 EventFancyboxModal();
@@ -10,3 +11,5 @@ EventFancyboxModal();
 ScrollTop();
 //Таймер
 Timer('19 July 2021');
+//Слайдер
+Slider();
