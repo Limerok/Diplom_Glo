@@ -791,6 +791,29 @@ p.services-image_mobile {
   left: 0;
   opacity: 0;
 }
+.modal-documents{
+  display: none;
+}
+.image-modal{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+.overlay-document{
+  display: none;
+  position: fixed;
+  inset: 0px;
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.45);
+}
+.img-modal{
+  width: 100%;
+  max-width: 800px;
+  min-width: 300px;
+}
 .document-inner:hover .document-overlay {
   opacity: 1;
   transition: opacity 0.3s linear;

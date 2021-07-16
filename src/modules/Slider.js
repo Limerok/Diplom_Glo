@@ -1,5 +1,5 @@
 const Slider = () => {
-    const benefitsSlide = document.querySelectorAll('.benefits__item'),
+    /* const benefitsSlide = document.querySelectorAll('.benefits__item'),
         benefitsSlider = document.getElementById('benefits');
     let prevCountBenefits = 0,
         nextCountBenefits = 0,
@@ -90,7 +90,7 @@ const Slider = () => {
     });
     
     getNextSlideDisplay();
-    start();
+    start(); */
 
 
 };
