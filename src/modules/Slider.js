@@ -1,96 +1,212 @@
 const Slider = () => {
-    /* const benefitsSlide = document.querySelectorAll('.benefits__item'),
-        benefitsSlider = document.getElementById('benefits');
-    let prevCountBenefits = 0,
-        nextCountBenefits = 0,
-        interval;
+    class SliderCarousel {
+        constructor({
+            main,
+            wrap,
+            prev,
+            infinity = false,
+            next,
+            position = 0,
+            slidesToShow = 3,
+            responsive = []
 
-    const getCount = () => {
-        if (window.innerWidth <  576) {
-            const getCountBenefits = 2;
-            return getCountBenefits;
-        } else {
-            const getCountBenefits = 3;
-            return getCountBenefits;
-        }
-    };
-
-    const enumerationSlide = () => {
-        benefitsSlide.forEach((item, i) => {
-            if (i < nextCountBenefits && i >= prevCountBenefits) {
-                item.style.display = 'block';
-            } else {
-                item.style.display = 'none';
-            }
-        });
-    };
-
-    const getNextSlideDisplay = () => {
-        if (nextCountBenefits >= benefitsSlide.length) {
-            prevCountBenefits = 0;
-            nextCountBenefits = 0;
-        }
-        nextCountBenefits = nextCountBenefits + getCount();
-        enumerationSlide();
-        prevCountBenefits = nextCountBenefits;
-    };
-
-    const getPrevSlideDisplay = () => {
-        nextCountBenefits = nextCountBenefits - getCount();
-        prevCountBenefits = nextCountBenefits - getCount();
-        if (prevCountBenefits < 0) {
-            nextCountBenefits = benefitsSlide.length;
-
-            const remainder = benefitsSlide.length % getCount();
-            if (remainder === 1) {
-                prevCountBenefits = benefitsSlide.length - 1;
-            } else if (remainder  === 2) {
-                prevCountBenefits = benefitsSlide.length - 2;
-            } else {
-                prevCountBenefits = benefitsSlide.length - getCount();
+        }) {
+            if (!main || !wrap) {
+                console.warn('slider: необходимо 2 свойства, "main" и "wrap"');
             }
             
+            this.main = document.querySelector(main);
+            this.wrap = document.querySelector(wrap);
+            this.slides = document.querySelector(wrap).children;
+            this.next = document.querySelector(next);
+            this.prev = document.querySelector(prev);
+            this.slidesToShow = slidesToShow;
+            this.options = {
+                position,
+                infinity,
+                widthSlide: Math.floor(100 / this.slidesToShow)
+            };
+            this.responsive = responsive;
+            
         }
-        enumerationSlide();
-        prevCountBenefits = nextCountBenefits;
-    };
 
-    const autoPlay = () => {
-        getNextSlideDisplay();
-    };
+        init () {
+            this.addCarouselClass();
+            this.addCarouselStyle();
 
-    const start = () => {
-        interval = setInterval(autoPlay, 5000);
-    };
+            if (this.prev && this.next) {
+                this.controlSlider();
+            } else {
+                this.addArrow();
+                this.controlSlider();
+            }
 
-    benefitsSlider.addEventListener('click', event => {
-        let target = event.target;
-
-        if (target.closest('.benefits__arrow--left')) {
-            getPrevSlideDisplay();
-        } else if (target.closest('.benefits__arrow--right')) {
-            getNextSlideDisplay();
+            if(this.responsive) {
+                this.responseInit();
+            }
         }
+
+        addCarouselClass () {
+            this.main.classList.add('carousel-slider');
+            this.wrap.classList.add('carousel-slider__wrap');
+            
+            for (const item of this.slides) {
+                item.classList.add('carousel-slider__item');
+            }
+        }
+
+        addCarouselStyle () {
+            this.main.style.cssText= `
+                overflow: hidden !important;
+            `;
+
+            this.wrap.style.cssText= `
+                display: flex !important;
+                transition: transform 0.5s !important;
+                will-change: transform !important;
+            `;
+
+            for (const item of this.slides) {
+                item.style.cssText = `
+                    flex: 0 0 ${this.options.widthSlide}% !important;
+                    margin: auto 0 !important;
+                `;
+            }
+        }
+
+        controlSlider () {
+            this.prev.addEventListener('click', this.prevSlider.bind(this));
+            this.next.addEventListener('click', this.nextSlider.bind(this));
+        }
+
+        prevSlider () {
+            if (this.options.infinity || this.options.position > 0) {
+                --this.options.position;
+
+                if (this.options.position < 0) {
+                    this.options.position = this.slides.length - this.slidesToShow;
+                }
+                this.wrap.style.transform = `translateX(-${this.options.position * this.options.widthSlide}%)`;
+            }
+        }
+
+        nextSlider () {
+            if (this.options.infinity || this.options.position < (this.slides.length - this.slidesToShow)) {
+                ++this.options.position;
+
+                if (this.options.position > this.slides.length - this.slidesToShow) {
+                    this.options.position = 0;
+                }
+                this.wrap.style.transform = `translateX(-${this.options.position * this.options.widthSlide}%)`;
+            }
+        }
+
+        addArrow () {
+            this.prev = document.createElement('button');
+            this.next = document.createElement('button');
+
+            this.prev.className = 'carousel-slider__prev';
+            this.next.className = 'carousel-slider__next';
+
+            this.main.appendChild(this.prev);
+            this.main.appendChild(this.next);
+
+            const style = document.createElement('style');
+            style.textContent = `
+               .carousel-slider__prev {
+                margin: 0 10px;
+                   border: 20px solid transparent;
+                   background: transparent;
+                   border-right-color: #19b5fe;
+
+               }
+               .carousel-slider__next{
+                   margin: 0 10px;
+                   border: 20px solid transparent;
+                   background: transparent;
+                   border-left-color: #19b5fe
+               }
+               .carousel-slider__prev:hover,
+               .carousel-slider__prev:focus,
+               .carousel-slider__next:hover,
+               .carousel-slider__next:focus {
+                    background: transparent;
+                    outline: transparent;
+               }
+            `;
+            document.head.appendChild(style);
+        }
+
+        responseInit () {
+            const slidesToShowDefault = this.slidesToShow;
+            const allRespone = this.responsive.map(item => item.breakPoint);
+            const mmaxResponse = Math.max(...allRespone);
+
+            const checkResponse = () => {
+                const widthWindow = document.documentElement.clientWidth;
+
+                if (widthWindow < mmaxResponse) {
+                    for (let i = 0; i < allRespone.length; i++) {
+                        if (widthWindow < allRespone[i]) {
+                            this.slidesToShow = this.responsive[i].slidesToShow;
+                            this.options.widthSlide = Math.floor(100 / this.slidesToShow);
+                            this.addCarouselStyle();
+                        } 
+                    }
+                } else {
+                    this.slidesToShow = slidesToShowDefault;
+                    this.options.widthSlide = Math.floor(100 / this.slidesToShow);
+                    this.addCarouselStyle();
+                }
+            };
+
+            checkResponse();
+            window.addEventListener('resize', checkResponse );
+        }
+    }
+
+    const carouselBenefits = new SliderCarousel({
+        main: '.benefits-inner',
+        wrap: '.benefits-wrap',
+        prev: '.benefits__arrow--left',
+        next: '.benefits__arrow--right',
+        slidesToShow: 3,
+        infinity: true,
+
+        responsive: [
+            {
+                breakPoint: 768,
+                slidesToShow: 2
+            },
+            {
+                breakPoint: 576,
+                slidesToShow: 1
+            }
+        ],
 
     });
 
-    const stopSlide = () => {
-        clearInterval(interval);
-    };
+    carouselBenefits.init();
 
-    benefitsSlider.addEventListener('mouseover', event => {
-        if (event.target.closest('.benefits__arrow') || event.target.closest('.benefits-wrap')) {
-            stopSlide();
-        }
+    const carouselService = new SliderCarousel({
+        main: '.service-slider-contant',
+        wrap: '.service-slider',
+        prev: '.services__arrow--left',
+        next: '.services__arrow--right',
+        slidesToShow: 2,
+        infinity: true,
+
+        responsive: [
+            {
+                breakPoint: 1200,
+                slidesToShow: 1
+            }
+        ],
+
     });
-    benefitsSlider.addEventListener('mouseout', event => {
-        if (event.target.closest('.benefits__arrow') || event.target.closest('.benefits-wrap')) {
-            start();
-        }
-    });
+
+    carouselService.init();
     
-    getNextSlideDisplay();
-    start(); */
 
 
 };

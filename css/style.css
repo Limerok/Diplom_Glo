@@ -509,6 +509,8 @@ input.error {
   margin: 0;
   font-size: 18px;
   text-transform: uppercase;
+  max-width: 185px;
+  margin: auto;
 }
 .bank-img-hover {
   display: none;
@@ -1618,16 +1620,12 @@ input.error {
   justify-content: space-between;
   margin: 0 auto;
 }
-
+.benefits-inner{
+  max-width: 576px;
+  margin: auto;
+}
 .benefits__item {
   width: 100%;
-  max-width: 185px;
-}
-.benefits__item--active{
-  display: block;
-}
-.benefits__item--noactive{
-  display: none;
 }
 
 .benefits-arrows {
