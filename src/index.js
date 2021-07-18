@@ -5,6 +5,9 @@ import ScrollTop from './modules/ScrollTop';
 import Timer from './modules/Timer';
 import Slider from './modules/Slider';
 import Certificate from './modules/Сertificate';
+import Checked from './modules/Checked';
+import Calc from './modules/Calc';
+import SendForm from './modules/SendForm';
 
 //Обратный звонок и Вызов замерщика
 EventFancyboxModal();
@@ -16,3 +19,9 @@ Timer('19 July 2021');
 Slider();
 //Сертификаты
 Certificate();
+//Проверка форм
+Checked();
+//Калькулятор
+Calc();
+//Отправка формы
+SendForm();
