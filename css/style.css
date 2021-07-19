@@ -815,9 +815,7 @@ p.services-image_mobile {
   background-color: rgba(0, 0, 0, 0.45);
 }
 .img-modal{
-  width: 100%;
-  max-width: 560px;
-  min-width: 300px;
+  height: 98vmin;
 }
 .document-inner:hover .document-overlay {
   opacity: 1;
