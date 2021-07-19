@@ -14,7 +14,7 @@ EventFancyboxModal();
 //Плавная прокрутка
 ScrollTop();
 //Таймер
-Timer('19 July 2021');
+Timer('25 July 2021');
 //Слайдер
 Slider();
 //Сертификаты
